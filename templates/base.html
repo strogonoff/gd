@@ -13,7 +13,7 @@
                 height: 100vh;
             }
 
-            svg {
+            svg#blob {
                 position: absolute;
                 opacity: 0.2;
                 top: 50%;
@@ -21,9 +21,8 @@
                 width: 100%;
                 transform: translateY(-50%) translateX(-50%) rotate(90deg) scale(0.5);
                 z-index: -1;     
-
             }
-            svg path {
+            svg#blob path {
                 fill: #{{ blob_color }};
             }
             body {
@@ -67,6 +66,7 @@
             .try-again {
                 white-space: nowrap;
             }
+
             @media screen and (max-width: 1000px) {
                 body {
                     flex-flow: column;
@@ -78,15 +78,43 @@
                     margin-left: 0;
                     margin-right: 0;
                 }
-                svg {
+                svg#blob {
                   max-width: 570px;
                   min-width: 480px;
                 }
+            }
+            #SolLogo {
+                position: absolute;
+                bottom: 0rem;
+                right: 1rem;
+                transform: scale(.6);
+            }
+            #SolLogo svg path {
+                /*fill: #{{ blob_color }};*/
+                fill: #aaa;
+                transition: fill .25s ease-in-out;
+            }
+            #SolLogo:hover svg path {
+                fill: black;
+            }
+            #SolLogo svg {
+                width: 6rem;
             }
         </style>
     </head>
     <body>
         {% block content %}
         {% endblock %}
+
+        <footer class="colophon">
+            <a id="SolLogo" href="https://sol.sc/">
+            </a>
+        </footer>
     </body>
+    <script src="https://solsc-static.s3.ap-northeast-2.amazonaws.com/abcjs_basic_5.10.3-min.js"></script>
+    <script>
+        (function () {
+            window.ABCJS.renderAbc('SolLogo', 'X:1\nL:1/4\nK:C\nG');
+        })();
+    </script>
 </html>
